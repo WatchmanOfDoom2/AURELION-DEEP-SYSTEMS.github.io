@@ -1,136 +1,247 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Aurelion Deep Systems</title>
 <style>
-  * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-  body {background-color:#0a0a0a; color:#e0e0e0; line-height:1.6; overflow-x:hidden;}
-  .container {width:90%; max-width:1200px; margin:0 auto;}
-  header {height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:radial-gradient(circle at center, #0f0f0f, #050505); position:relative; overflow:hidden;}
-  .sparkle {position:absolute; width:5px; height:5px; background:#00aaff; border-radius:50%; opacity:0.7; animation:sparkle 3s infinite;}
-  @keyframes sparkle {0%{opacity:0; transform:translateY(0) translateX(0) scale(0.5);} 50%{opacity:1; transform:translateY(-20px) translateX(15px) scale(1);} 100%{opacity:0; transform:translateY(0) translateX(0) scale(0.5);}}
-  header h1 {font-size:3rem; margin-bottom:20px; color:#00aaff; opacity:0; animation:fadeIn 2s forwards;}
-  header p {font-size:1.3rem; margin-bottom:40px; color:#aaaaaa; opacity:0; animation:fadeIn 3s forwards 0.5s;}
-  @keyframes fadeIn {to {opacity:1;}}
-  .btn {padding:15px 40px; background-color:#00aaff; color:#0a0a0a; font-weight:bold; border:none; border-radius:5px; cursor:pointer; transition:0.3s; font-size:1.1rem;}
-  .btn:hover {background-color:#0088cc; transform:scale(1.1);}
-  section {padding:80px 0;}
-  section h2 {text-align:center; font-size:2.2rem; margin-bottom:30px; color:#00aaff; opacity:0; transform:translateY(20px); transition:1s ease-out;}
-  section p {text-align:center; max-width:800px; margin:0 auto 20px; color:#cccccc; opacity:0; transform:translateY(20px); transition:1s ease-out;}
-  .features {display:flex; flex-wrap:wrap; justify-content:space-around; margin-top:50px;}
-  .feature {flex:1 1 250px; margin:20px; padding:20px; background-color:#111111; border-radius:10px; transition:0.3s; position:relative; cursor:pointer;}
-  .feature:hover {background-color:#1a1a1a;}
-  .feature h3 {margin-bottom:15px; font-size:1.5rem;}
-  .feature p {font-size:1rem; color:#cccccc;}
-  .no-access {color:#ff3333; font-weight:bold; animation:blink 1s infinite;}
-  .in-progress {color:#ffaa00; font-weight:bold;}
-  @keyframes blink {0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
-  footer {background-color:#050505; text-align:center; padding:30px 0; margin-top:50px; border-top:1px solid #222;}
-  footer p {color:#666;}
-  .show {opacity:1 !important; transform:translateY(0) !important;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:#0a0a0a;color:#e0e0e0;line-height:1.5;overflow-x:hidden;
+  }
+  .container{width:90%;max-width:1200px;margin:0 auto;padding:0 16px}
 
-  /* Модальные окна */
-  .modal {display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.9);}
-  .modal-content {background-color:#111111; margin:10% auto; padding:30px; border:1px solid #444; width:80%; max-width:600px; border-radius:10px; color:#e0e0e0; position:relative; text-align:center;}
-  .close {color:#ff3333; position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer;}
-  .close:hover {color:#ffaa00;}
+  /* Header */
+  header{
+    height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;position:relative;background:radial-gradient(circle at center,#0f0f0f,#050505);
+    overflow:hidden;padding:40px 0;
+  }
+  .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:#00aaff;opacity:.8;animation:sparkle 3s infinite}
+  @keyframes sparkle{
+    0%{transform:translateY(0) scale(.6);opacity:0}
+    50%{transform:translateY(-24px) scale(1);opacity:1}
+    100%{transform:translateY(0) scale(.6);opacity:0}
+  }
+  header h1{color:#00aaff;font-size:2.6rem;margin-bottom:12px;opacity:0;animation:fadeIn 1.8s forwards}
+  header p{color:#bfbfbf;margin-bottom:20px;opacity:0;animation:fadeIn 2.4s forwards}
+  @keyframes fadeIn{to{opacity:1}}
+
+  .btn{
+    background:#00aaff;color:#061016;padding:12px 28px;border-radius:8px;border:0;cursor:pointer;font-weight:700;
+    transition:transform .18s ease,background .18s ease;
+  }
+  .btn:hover{transform:scale(1.06);background:#0088cc}
+
+  section{padding:72px 0}
+  section h2{color:#00aaff;text-align:center;font-size:1.9rem;margin-bottom:18px;opacity:0;transform:translateY(18px);transition:all .7s ease}
+  section p{color:#cfcfcf;text-align:center;max-width:820px;margin:0 auto 14px;opacity:0;transform:translateY(18px);transition:all .7s ease}
+
+  /* Features */
+  .features{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:28px}
+  .feature{
+    background:#121212;padding:18px;border-radius:10px;min-width:240px;max-width:340px;flex:1 1 260px;
+    cursor:pointer;transition:background .2s ease,transform .12s ease;position:relative;
+  }
+  .feature:hover{background:#1b1b1b;transform:translateY(-4px)}
+  .feature h3{font-size:1.15rem;margin-bottom:10px;color:#dfefff}
+  .feature p{font-size:0.98rem;color:#cccccc}
+
+  .no-access{color:#ff3333;font-weight:800;animation:blink 1s linear infinite}
+  .in-progress{color:#ffaa00;font-weight:700}
+
+  @keyframes blink{0%{opacity:1}50%{opacity:.22}100%{opacity:1}}
+
+  /* Footer */
+  footer{background:#050505;padding:22px 0;text-align:center;border-top:1px solid #222;margin-top:40px;color:#7a7a7a;font-size:.95rem}
+
+  /* Modal base */
+  .modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.86);align-items:center;justify-content:center;padding:20px}
+  .modal.show{display:flex}
+  .modal-box{
+    width:100%;max-width:640px;background:#121212;border-radius:10px;padding:22px 26px;border:1px solid #333;position:relative;
+    box-shadow:0 8px 30px rgba(0,0,0,.6)
+  }
+  .modal-box h2{margin-bottom:12px;color:#ffecec}
+  .modal-box p{color:#d6d6d6;margin-bottom:8px}
+  .modal-close{
+    position:absolute;right:14px;top:10px;font-size:22px;color:#ff3333;background:transparent;border:0;cursor:pointer;font-weight:700
+  }
+  .modal-close:hover{color:#ffaa00}
+
+  /* small responsive tweaks */
+  @media(max-width:600px){
+    header h1{font-size:1.9rem}
+    .feature{min-width:100%}
+  }
+
+  /* visually-hidden for accessibility */
+  .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="sparkle" style="top:20%; left:30%; animation-delay:0s;"></div>
-  <div class="sparkle" style="top:50%; left:60%; animation-delay:1s;"></div>
-  <div class="sparkle" style="top:70%; left:40%; animation-delay:2s;"></div>
-  <h1>Добро пожаловать в Aurelion Deep Systems</h1>
-  <p>Вы только что стали рекрутом нашей компании.<br>Уровень доступа рекрута: 1</p>
-  <button class="btn" id="openRules">Прочитать правила рекрута</button>
+  <!-- sparkles -->
+  <div class="sparkle" style="top:12%;left:18%;animation-delay:0s"></div>
+  <div class="sparkle" style="top:28%;left:72%;animation-delay:.6s"></div>
+  <div class="sparkle" style="top:62%;left:40%;animation-delay:1.5s"></div><h1>
+     Добро пожаловать в Aurelion Deep Systems</h1>
+  <p>Вы только что стали рекрутом нашей компании.<br><strong>Уровень доступа рекрута: 1</strong></p>
+  <button id="openRules" class="btn" aria-haspopup="dialog" aria-controls="modal-rules">Прочитать правила рекрута</button>
 </header>
 
-<section>
-  <div class="container">
-    <h2>О компании</h2>
-    <p>Мы слушаем то, что скрыто. Наша миссия — исследовать глубины, где человеческий глаз не видит и разум не понимает. Каждое действие строго засекречено.</p>
-    <p>Только те, кто готов к правде, могут двигаться дальше.</p>
-  </div>
-</section>
-<section style="background-color:#0f0f0f;">
-  <div class="container">
-    <h2>Что вас ждёт</h2>
-    <div class="features">
-      <div class="feature" onclick="showAccess('Тайные пещеры')">
-        <h3>Тайные пещеры</h3>
-        <p class="no-access">Нет уровня доступа (уровень доступа: 2)</p>
-      </div>
-      <div class="feature" onclick="showAccess('Аномальные материалы')">
-        <h3>Аномальные материалы</h3>
-        <p class="no-access">Нет уровня доступа (уровень доступа: 3)</p>
-      </div>
-      <div class="feature">
-        <h3>Современные технологии</h3>
-        <p class="in-progress">Показано (в разработке)</p>
-      </div>
+<main>
+  <section>
+    <div class="container">
+      <h2>О компании</h2>
+      <p>Мы слушаем то, что скрыто. Наша миссия — исследовать глубины, где человеческий глаз не видит и разум не понимает. Каждое действие строго засекречено.</p>
+      <p>Только те, кто готовы к правде, могут двигаться дальше.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Модальное окно правил рекрута -->
-<div id="rulesModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeRules">&times;</span>
-    <h2>Правила рекрута</h2>
+  <section style="background:#0f0f0f">
+    <div class="container">
+      <h2>Что вас ждёт</h2>
+
+      <div class="features" role="list">
+        <div class="feature" role="listitem" data-section="Тайные пещеры" tabindex="0">
+          <h3>Тайные пещеры</h3>
+          <p class="no-access">Нет уровня доступа (уровень доступа: 2)</p>
+        </div>
+
+        <div class="feature" role="listitem" data-section="Аномальные материалы" tabindex="0">
+          <h3>Аномальные материалы</h3>
+          <p class="no-access">Нет уровня доступа (уровень доступа: 3)</p>
+        </div>
+
+        <div class="feature" role="listitem" data-section="Современные технологии" tabindex="0">
+          <h3>Современные технологии</h3>
+          <p class="in-progress">Показано (в разработке)</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- Rules modal -->
+<div id="modal-rules" class="modal" role="dialog" aria-modal="true" aria-labelledby="rules-title" tabindex="-1">
+  <div class="modal-box" role="document">
+    <button class="modal-close" aria-label="Закрыть правила" id="closeRules">&times;</button>
+    <h2 id="rules-title">Правила рекрута</h2>
     <p>Вся информация строго засекречена. Любое отклонение от правил карается.</p>
     <p>Соблюдайте инструкции. Только дисциплинированные рекруты могут продолжить работу с источниками энергии.</p>
-    <p>Уровень доступа рекрута: 1</p>
+    <p>Нарушение правил ведёт к немедленному исключению и возможным санкциям со стороны компании.</p>
+    <p><strong>Уровень доступа рекрута: 1</strong></p>
   </div>
 </div>
 
-<!-- Модальное окно “Нет доступа” -->
-<div id="accessModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeAccess">&times;</span>
-    <h2 id="accessTitle" class="no-access">Нет уровня доступа</h2>
-    <p>Ваш текущий уровень доступа слишком низок для этого раздела.</p>
+<!-- Access modal -->
+<div id="modal-access" class="modal" role="alertdialog" aria-modal="true" aria-labelledby="access-title" tabindex="-1">
+  <div class="modal-box">
+    <button class="modal-close" aria-label="Закрыть" id="closeAccess">&times;</button>
+    <h2 id="access-title" class="no-access">Нет уровня доступа</h2>
+    <p id="access-body">Ваш текущий уровень доступа слишком низок для этого раздела.</p>
+    <p style="margin-top:8px;color:#bfbfbf;font-size:.95rem">Обратитесь к руководству для повышения уровня.</p>
   </div>
 </div>
 
 <footer>
-  <p>&copy; 2025 Aurelion Deep Systems. Все права защищены. | Девиз: «Всё должно быть засекречено»</p>
+  <div class="container">
+    <p>&copy; 2025 Aurelion Deep Systems. Все права защищены. | Девиз: «Всё должно быть засекречено»</p>
+  </div>
 </footer>
 
 <script>
-  // Появление секций при прокрутке
-  const sections = document.querySelectorAll('section, header h1, header p');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {if(entry.isIntersecting) entry.target.classList.add('show');});
-  }, {threshold:0.1});
-  sections.forEach(sec => observer.observe(sec));
+  // --- Utility: open/close modals safely ---
+  function openModal(modal) {
+    if(!modal) return;
+    modal.classList.add('show');
+    // focus first focusable element inside (close button)
+    const btn = modal.querySelector('.modal-close');
+    if(btn) btn.focus();
+    // trap simple: remember last focused
+    lastFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(modal) {
+    if(!modal) return;
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    if(lastFocus) lastFocus.focus();
+  }
 
-  // Модальное окно правил рекрута
-  const rulesModal = document.getElementById("rulesModal");
-  const btnRules = document.getElementById("openRules");
-  const closeRules = document.getElementById("closeRules");
-  btnRules.addEventListener('click', () => rulesModal.style.display = "block");
-  closeRules.addEventListener('click', () => rulesModal.style.display = "none");
+  // elements
+  const modalRules = document.getElementById('modal-rules');
+  const modalAccess = document.getElementById('modal-access');
+  const btnOpenRules = document.getElementById('openRules');
+  const btnCloseRules = document.getElementById('closeRules');
+  const btnCloseAccess = document.getElementById('closeAccess');
+  const features = document.querySelectorAll('.feature');
+  const accessTitle = document.getElementById('access-title');
+  const accessBody = document.getElementById('access-body');
 
-  // Модальное окно “Нет доступа”
-  const accessModal = document.getElementById("accessModal");
-  const closeAccess = document.getElementById("closeAccess");
-  closeAccess.addEventListener('click', () => accessModal.style.display = "none");
+  let lastFocus = null;
+// open rules
+  btnOpenRules.addEventListener('click', () => openModal(modalRules));
+  btnCloseRules.addEventListener('click', () => closeModal(modalRules));
 
-  function showAccess(sectionName){
-    document.getElementById("accessTitle").textContent = Нет уровня доступа: ${sectionName};
-    accessModal.style.display = "block"; }
- 
-  // Закрытие при клике вне модального окна
-  window.addEventListener('click', (event) => {
-    if(event.target === rulesModal) rulesModal.style.display = "none";
-    if(event.target === accessModal) accessModal.style.display = "none";
+  // open access modal when clicking feature (if restricted)
+  features.forEach(f => {
+    f.addEventListener('click', () => {
+      const section = f.getAttribute('data-section') || 'Раздел';
+      // if section is the ones with no access -> show modal
+      if(section === 'Тайные пещеры' || section === 'Аномальные материалы'){
+        accessTitle.textContent = Нет уровня доступа: ${section};
+        accessBody.textContent = 'Ваш текущий уровень доступа (1) слишком низок для этого раздела. Требуется повышение до уровня, указанного в разделе.';
+        openModal(modalAccess);
+      } else {
+        // for other sections (в разработке) можно показать простое сообщение
+        accessTitle.textContent = Информация: ${section};
+        accessTitle.classList.remove('no-access');
+        accessBody.textContent = 'Раздел находится в разработке. Следите за обновлениями.';
+        openModal(modalAccess);
+        // restore class after short delay (for visual)
+        setTimeout(()=> accessTitle.classList.add('no-access'), 50);
+      }
+    });
+
+    // keyboard accessibility (Enter/Space)
+    f.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); f.click(); }
+    });
   });
-</script>
 
+  // close access
+  btnCloseAccess.addEventListener('click', () => closeModal(modalAccess));
+
+  // close by clicking outside modal-box
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal(modal);
+    });
+  });
+
+  // close with Escape
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      if(modalRules.classList.contains('show')) closeModal(modalRules);
+      if(modalAccess.classList.contains('show')) closeModal(modalAccess);
+    }
+  });
+
+  // IntersectionObserver reveal (gentle)
+  const revealTargets = document.querySelectorAll('section h2, section p, header h1, header p');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.style.opacity = 1, entry.target.style.transform = 'translateY(0)';
+    });
+  }, {threshold:0.12});
+  revealTargets.forEach(t => io.observe(t));
+</script>
 </body>
 </html>
 
